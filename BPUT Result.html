@@ -1,0 +1,99 @@
+ <html>
+ <head>
+ <script>
+ //http://results.bput.ac.in/204_RES/
+ var address=prompt('Enter the address of the result site');
+ 
+	
+function abc()
+{
+	
+	var regd=document.getElementById('regd').value;
+	if(regd=='')
+		alert('Enetr Roll No.');
+
+	else if(regd.length!=10)
+	{
+		alert('Enter Valid Roll No.');
+		document.all.regd.focus();
+	}	
+		
+	else
+	{
+		var x=address;
+		var y=document.getElementById('amnt').value;
+		var r=document.getElementById('result');
+		r.innerHTML='';
+		var t=regd;
+		var z=(y)?y:1;//alert(z);
+		for(var i=0;i<z;i++)
+		{
+			var div=document.createElement('div');
+			var frame=document.createElement('iframe');
+			frame.src=x+t+'.html';
+			div.id=t;t++;
+			div.appendChild(frame);
+			r.appendChild(div);
+			//alert(div.id);
+		}
+		
+	}
+}
+
+
+function search()
+{
+
+	var x=document.getElementById('stu').value;
+	//alert(x);
+	var y=document.getElementById(x);
+	if(!y)
+		alert('Not Found');
+	else
+		document.body.scrollTop = y.offsetTop;	
+}
+
+
+</script>
+<style>
+#result div{position:relative;float:left;height:490px;width:680px;overflow:hidden;}
+#result div iframe{height:900px;width:680px;border:none;}
+
+</style> 
+ </head>
+ <body style="overflow-x:hidden">
+<!--<form action="http://results.bput.ac.in/204_RES" method="post" name="frmResults" id="frmResults" onsubmit="return chkFields(this);">
+							  Registration Number:
+                                <input name="txtRegdno" type="text" class="inputtxt" id="txtRegdno" size="20" maxlength="10"> 
+              &nbsp; <input name="cmdSearch" type="submit" class="mybutton" id="cmdSearch" value="Show">
+			  </form>-->
+	<table>
+		<tr>
+			<td>Registration Number</td>
+			<td>:</td>
+			<td><input id="regd" type="text" placeholder="Enter ID"/><td>
+			<td></td>
+			<td>Enter ID to Search in this page</td>
+			<td>:</td>
+			<td><input id="stu" type="text" placeholder="Enter ID"/></td>
+			<td><input type="submit" onclick="search()"/><td/>
+		</tr>
+		<tr>
+			<td>Number of  Students</td>
+			<td>:</td>
+			<td><input id="amnt" type="text" value="" placeholder="Enter ID"/></td>
+			<td><input type="submit" onclick="abc()"/></td>
+			<td><td/>
+			<td><td/>
+			<td><td/>
+			<td><td/>
+		</tr>
+	</table>
+	<div id="result" style="width:1360px;"></div>
+	<div style="position:fixed;bottom:0px;right:0px;z-index:20;padding:15px;background:grey;cursor:pointer;" onclick="document.body.scrollTop=0;">goto TOP</div>
+	<div style="position:fixed;bottom:0px;left:0px;z-index:20;padding:15px;background:grey;cursor:pointer;" onclick="document.body.scrollTop=document.getElementById('amnt').value * 490;">goto BOTTOM</div>
+	</body>
+ </html>
+ 
+ 
+ 
