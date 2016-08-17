@@ -2,8 +2,13 @@
  <head>
  <script>
  //http://results.bput.ac.in/204_RES/
- var address=prompt('Enter the address of the result site');
- 
+ //http://results.bput.ac.in/195_RES/
+ if (! localStorage.getItem('address')) {
+ 	var address=prompt('Enter the address of the result site\ne.g: http://results.bput.ac.in/195_RES/');
+ 	localStorage.setItem('address', address)
+ } else {
+ 	var address = localStorage.getItem('address')
+ }
 	
 function abc()
 {
@@ -71,17 +76,17 @@ function search()
 		<tr>
 			<td>Registration Number</td>
 			<td>:</td>
-			<td><input id="regd" type="text" placeholder="Enter ID"/><td>
+			<td><input id="regd" type="number" placeholder="ID e.g 1101111014"/><td>
 			<td></td>
 			<td>Enter ID to Search in this page</td>
 			<td>:</td>
-			<td><input id="stu" type="text" placeholder="Enter ID"/></td>
+			<td><input id="stu" type="number" placeholder="Enter ID"/></td>
 			<td><input type="submit" onclick="search()"/><td/>
 		</tr>
 		<tr>
 			<td>Number of  Students</td>
 			<td>:</td>
-			<td><input id="amnt" type="text" value="" placeholder="Enter ID"/></td>
+			<td><input id="amnt" type="number" min="1" value="1" placeholder="Count e.g 10"/></td>
 			<td><input type="submit" onclick="abc()"/></td>
 			<td><td/>
 			<td><td/>
